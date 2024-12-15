@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macera Oyunu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        #game-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Macera Oyunu</h1>
+        <p id="game-text">Bir ormandasın. Önünde iki yol var. Hangisini seçmek istersin?</p>
+        <button onclick="choosePath(1)">Sağdaki yol (gizemli ışık var)</button>
+        <button onclick="choosePath(2)">Soldaki yol (karanlık ve sessiz)</button>
+    </div>
+
+    <script>
+        function choosePath(path) {
+            const gameText = document.getElementById('game-text');
+            if (path === 1) {
+                // Sağdaki yol
+                const outcomes = ["altın", "zehir", "büyülü bir asa"];
+                const treasure = outcomes[Math.floor(Math.random() * outcomes.length)];
+                if (treasure === "zehir") {
+                    gameText.innerHTML = "Gizemli ışığa doğru yürüdün ve bir sandık buldun! İçinden zehir çıktı. Oyun bitti!";
+                } else {
+                    gameText.innerHTML = `Gizemli ışığa doğru yürüdün ve bir sandık buldun! İçinden ${treasure} çıktı! Tebrikler!`;
+                }
+            } else if (path === 2) {
+                // Soldaki yol
+                const encounter = Math.random() > 0.5 ? "Kaçmayı başardın!" : "Kaçamadın, canavar seni yedi!";
+                gameText.innerHTML = `Karanlık yolda ilerledin ve bir canavarla karşılaştın. ${encounter}`;
+            }
+        }
+    </script>
+</body>
+</html>
